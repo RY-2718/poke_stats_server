@@ -2,6 +2,7 @@ AllCops:
   Exclude:
     - 'vendor/**/*'
     - 'db/schema.rb'
+    - 'db/migrate/*.rb'
 
 Rails:
   Enabled: true
