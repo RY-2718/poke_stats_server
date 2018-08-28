@@ -12,7 +12,7 @@ class Api::V1::TokenController < ApplicationController
       end
     end
 
-    user_token = user.user_tokens.new(token: user.create_token)
+    user_token = user.user_tokens.new(token: user.create_token(ALG))
     if user_token.save
       # TODO: どのような形でユーザに返すかは要検討かも
       render json: { token: user_token.token }
