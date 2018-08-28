@@ -24,6 +24,10 @@ Style/Documentation:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+Style/IndentationConsistency:
+  Enabled: true
+  EnforcedStyle: rails
+
 Style/MixinUsage:
   Exclude:
   - 'bin/setup'
@@ -34,6 +38,9 @@ Style/SymbolArray:
 
 Style/WordArray:
   Enabled: false
+
+Metrics/AbcSize:
+  Max: 20
 
 Metrics/LineLength:
   Max: 130
