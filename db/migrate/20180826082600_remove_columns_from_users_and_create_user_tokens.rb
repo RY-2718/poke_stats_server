@@ -1,4 +1,4 @@
-class User < ActiveRecord::Migration[5.2]
+class RemoveColumnsFromUsersAndCreateUserTokens < ActiveRecord::Migration[5.2]
   def change
     remove_column :users, :token, :string
 
