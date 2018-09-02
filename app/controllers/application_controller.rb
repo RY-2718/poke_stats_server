@@ -18,14 +18,7 @@ class ApplicationController < ActionController::API
       return
     end
 
-    # 有効か検査
-    jwt_user_id = jwt_decoded_token[0]['id']
-    if UserToken.where(user_id: jwt_user_id, token: jwt_bearer_token).exists?
-      @jwt_user_id = jwt_user_id
-    else
-      response.header['WWW-Authenticate'] = 'Bearer realm="Poke Stats", error="invalid_token"'
-      render json: { errors: [{ message: 'Expired token' }] }, status: :unauthorized
-    end
+    @jwt_user_id = jwt_decoded_token[0]['id']
   end
 
   private
@@ -39,14 +32,19 @@ class ApplicationController < ActionController::API
     end
 
     def jwt_decoded_token
-      # verify_iat を指定しても実際には何も起こらない
-      # iat を含めない場合も、iat が未来の日付の場合も、エラーは発生しなかった
       @jwt_decoded_token ||=
         JWT.decode(
           jwt_bearer_token,
           Rails.application.credentials.secret_key_base,
-          verify_iat: true, algorithm: ALG
+          verify_iat: true,
+          algorithm: ALG
         )
+    rescue JWT::ExpiredSignature
+      if (old_token = UserToken.find_by(token: jwt_bearer_token))
+        user = old_token.user
+        new_token = user.user_tokens.new(token: user.create_token(ALG))
+        @jwt_bearer_token = new_token.token if new_token.save
+      end
     rescue JWT::DecodeError, JWT::VerificationError, JWT::InvalidIatError
       # エラーの詳細をクライアントには伝えないため、常に nil を返す
       nil
