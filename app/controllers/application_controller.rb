@@ -19,6 +19,7 @@ class ApplicationController < ActionController::API
     end
 
     @jwt_user_id = jwt_decoded_token[0]['id']
+    response.headers['Authorization'] = "Bearer #{jwt_bearer_token}"
   end
 
   private
