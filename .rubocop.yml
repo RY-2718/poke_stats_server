@@ -24,14 +24,13 @@ Style/Documentation:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-Style/IndentationConsistency:
-  Enabled: true
-  EnforcedStyle: rails
-
 Style/MixinUsage:
   Exclude:
   - 'bin/setup'
   - 'bin/update'
+
+Style/NumericLiterals:
+  Enabled: false
 
 Style/SymbolArray:
   Enabled: false
@@ -47,3 +46,8 @@ Metrics/LineLength:
 
 Metrics/MethodLength:
   Max: 25
+
+Layout/IndentationConsistency:
+  Enabled: true
+  EnforcedStyle: rails
+

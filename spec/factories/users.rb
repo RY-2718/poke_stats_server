@@ -1,7 +1,6 @@
 FactoryBot.define do
-  factory :user do
-    username "MyString"
-    token "MyString"
-    google_uid "MyString"
+  factory :alice, class: User do
+    username { 'Alice' }
+    google_uid { 1234567890 }
   end
 end
