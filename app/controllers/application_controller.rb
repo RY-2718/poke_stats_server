@@ -43,7 +43,7 @@ class ApplicationController < ActionController::API
     rescue JWT::ExpiredSignature
       if (old_token = UserToken.find_by(token: jwt_bearer_token))
         user = old_token.user
-        new_token = user.user_tokens.new(token: user.create_token(ALG))
+        new_token = user.user_tokens.new(token: user.create_token(exp: Time.zone.now + 1.day, alg: ALG))
         @jwt_bearer_token = new_token.token if new_token.save
       end
     rescue JWT::DecodeError, JWT::VerificationError, JWT::InvalidIatError
