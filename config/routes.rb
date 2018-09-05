@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     namespace :v1, format: 'json' do
       get 'auth/google_oauth2/callback', to: 'token#create'
       get 'hello', to: 'token#hello'
+      resources 'users', only: [:show, :update, :destroy]
     end
   end
 end
