@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_05_083925) do
+ActiveRecord::Schema.define(version: 2018_09_05_131539) do
 
   create_table "my_poke_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "item"
@@ -35,10 +35,10 @@ ActiveRecord::Schema.define(version: 2018_09_05_083925) do
   end
 
   create_table "my_poke_history_moves", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "move"
     t.bigint "my_poke_history_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "move_id"
     t.index ["my_poke_history_id"], name: "index_my_poke_history_moves_on_my_poke_history_id"
   end
 
