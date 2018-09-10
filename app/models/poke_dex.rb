@@ -3,6 +3,10 @@ class PokeDex < ActiveYaml::Base
   set_root_path File.expand_path('db/fixture', Rails.root)
   set_filename 'poke_dex'
 
+  def abilities
+    [ability0, hidden_ability, ability1].delete_if(&:blank?)
+  end
+
   def base
     {
       h: self.H,

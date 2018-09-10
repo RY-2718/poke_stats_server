@@ -2,6 +2,10 @@ class MyPokeHistory < ApplicationRecord
   belongs_to :my_poke
   has_many(:my_poke_history_moves, dependent: :destroy)
 
+  validates :ability, presence: true
+  validates :nature, presence: true
+  validate :effort_value_should_be_valid, :individual_value_should_be_valid, :ability_should_be_valid
+
   def effort
     {
       h: effort_h,
@@ -27,4 +31,24 @@ class MyPokeHistory < ApplicationRecord
   def moves
     my_poke_history_moves.map(&:name)
   end
+
+  private
+
+    def effort_value_should_be_valid
+      if effort.values.any? { |v| v < 0 || v > 255 } && effort.values.inject(:+) > 510
+        errors.add(:effort_value, 'が不正です')
+      end
+    end
+
+    def individual_value_should_be_valid
+      if individual.values.any? { |v| v < 0 || v > 31}
+        errors.add(:individual_value, 'が不正です')
+      end
+    end
+
+    def ability_should_be_valid
+      unless my_poke.poke_dex.abilities.include?(ability)
+        errors.add(:ability, 'が不正です')
+      end
+    end
 end

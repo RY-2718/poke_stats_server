@@ -1,6 +1,7 @@
 class MyPoke < ApplicationRecord
   belongs_to :user
   has_many(:my_poke_histories, dependent: :destroy)
+  validates :poke_dex_id, presence: true
 
   def full_info
     {
@@ -16,11 +17,11 @@ class MyPoke < ApplicationRecord
     }
   end
 
-  private
+  def poke_dex
+    @poke_dex ||= PokeDex.find_by(id: poke_dex_id)
+  end
 
-    def poke_dex
-      @poke_dex ||= PokeDex.find_by(id: poke_dex_id)
-    end
+  private
 
     def latest_history
       @latest_history ||= MyPokeHistory.find_by(my_poke_id: id)

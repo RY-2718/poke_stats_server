@@ -3,6 +3,11 @@ require 'rails_helper'
 RSpec.describe MyPoke, type: :model do
   let(:alice) { create(:alice) }
   let(:poke) { create(:サザンドラ, :with_latest_history, user: alice) }
+
+  it 'should be valid' do
+    expect(poke).to be_valid
+  end
+
   describe '#full_info' do
     it 'should have keys' do
       expect(poke.full_info).to match(
