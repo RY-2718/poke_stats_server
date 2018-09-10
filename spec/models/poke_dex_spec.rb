@@ -1,8 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe PokeDex, type: :model do
-  let(:ガブリアス) { PokeDex.find_by(name: 'ガブリアス') }
   let(:ヒトカゲ) { PokeDex.find_by(name: 'ヒトカゲ') }
+  let(:トランセル) { PokeDex.find_by(name: 'トランセル') }
+  let(:ポッポ) { PokeDex.find_by(name: 'ポッポ') }
+  let(:ガブリアス) { PokeDex.find_by(name: 'ガブリアス') }
+
+  describe '#abilities' do
+    it 'should return correct array' do
+      expect(トランセル.abilities).to eq %w[だっぴ]
+      expect(ガブリアス.abilities).to eq %w[すながくれ さめはだ]
+      expect(ポッポ.abilities).to eq %w[するどいめ はとむね ちどりあし]
+    end
+  end
 
   describe '#base' do
     it 'should return correct hash' do
