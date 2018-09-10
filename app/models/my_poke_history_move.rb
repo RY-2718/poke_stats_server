@@ -1,29 +1,7 @@
 class MyPokeHistoryMove < ApplicationRecord
   belongs_to :my_poke_history
 
-  def name
-    move.name
-  end
-
-  def type
-    move.type
-  end
-
-  def cat
-    move.cat
-  end
-
-  def power
-    move.power
-  end
-
-  def accuracy
-    move.accuracy
-  end
-
-  def pp
-    move.pp
-  end
+  delegate :name, :type, :cat, :power, :accuracy, :pp, to: :move
 
   private
 
