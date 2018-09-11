@@ -16,6 +16,10 @@ class MyPoke < ApplicationRecord
     @poke_dex ||= PokeDex.find_by(id: poke_dex_id)
   end
 
+  def needs_create_new_history
+    updated_at > latest_history.created_at
+  end
+
   private
 
     def latest_history
