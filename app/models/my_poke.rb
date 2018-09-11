@@ -3,18 +3,13 @@ class MyPoke < ApplicationRecord
   has_many(:my_poke_histories, dependent: :destroy)
   validates :poke_dex_id, presence: true
 
-  def full_info
+  def full_info(history = latest_history)
     {
       id: id,
       name: poke_dex.name,
-      item: latest_history.item,
-      nature: latest_history.nature,
       base: poke_dex.base,
-      effort: latest_history.effort,
-      individual: latest_history.individual,
-      moves: latest_history.moves,
       types: poke_dex.types,
-    }
+    }.merge(history.full_info)
   end
 
   def poke_dex

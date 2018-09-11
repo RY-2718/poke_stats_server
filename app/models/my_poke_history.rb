@@ -6,6 +6,16 @@ class MyPokeHistory < ApplicationRecord
   validates :nature, presence: true
   validate :effort_value_should_be_valid, :individual_value_should_be_valid, :ability_should_be_valid
 
+  def full_info
+    {
+      item: item,
+      nature: nature,
+      effort: effort,
+      individual: individual,
+      moves: moves,
+    }
+  end
+
   def effort
     {
       h: effort_h,
