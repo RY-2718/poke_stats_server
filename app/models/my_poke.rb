@@ -19,6 +19,6 @@ class MyPoke < ApplicationRecord
   private
 
     def latest_history
-      @latest_history ||= MyPokeHistory.find_by(my_poke_id: id)
+      @latest_history ||= MyPokeHistory.order(created_at: :desc).find_by(my_poke_id: id)
     end
 end
