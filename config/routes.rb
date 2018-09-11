@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get 'auth/google_oauth2/callback', to: 'token#create'
       get 'hello', to: 'token#hello'
       resources 'users', only: [:show, :update, :destroy]
+      resources 'my_pokes'
     end
   end
 end
