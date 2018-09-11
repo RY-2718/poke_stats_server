@@ -45,6 +45,10 @@ group :development, :test do
 
   # Manage environment variables
   gem 'dotenv-rails'
+
+  # pry
+  gem 'pry-byebug'
+  gem 'pry-rails'
 end
 
 group :development do
