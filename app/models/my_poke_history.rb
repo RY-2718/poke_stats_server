@@ -4,7 +4,7 @@ class MyPokeHistory < ApplicationRecord
 
   validates :ability, presence: true
   validates :nature, presence: true
-  validate :effort_value_should_be_valid, :individual_value_should_be_valid, :ability_should_be_valid
+  validate :effort_value_should_be_valid, :individual_value_should_be_valid, :ability_should_be_valid, :moves_should_exist
 
   def full_info
     {
@@ -59,6 +59,14 @@ class MyPokeHistory < ApplicationRecord
     def ability_should_be_valid
       unless my_poke.poke_dex.abilities.include?(ability)
         errors.add(:ability, 'が不正です')
+      end
+    end
+
+    def moves_should_exist
+      if !new_record? && moves == []
+        errors.add(:moves, 'を覚えていません')
+      elsif moves.size > 4
+        errors.add(:moves, 'が多すぎます')
       end
     end
 end

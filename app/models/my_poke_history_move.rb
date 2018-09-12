@@ -1,5 +1,6 @@
 class MyPokeHistoryMove < ApplicationRecord
   belongs_to :my_poke_history
+  validate :move_id_should_exists
 
   delegate :name, :type, :cat, :power, :accuracy, :pp, to: :move
 
@@ -10,7 +11,7 @@ class MyPokeHistoryMove < ApplicationRecord
     end
 
     def move_id_should_exists
-      unless Move.exists?(id: move_id)
+      unless Move.find_by(id: move_id)
         errors.add(:moves, 'が存在しません')
       end
     end
