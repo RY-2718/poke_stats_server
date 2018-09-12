@@ -5,7 +5,13 @@ class Api::V1::MyPokesController < ApplicationController
   PER_PAGE = 20
 
   def index
-    my_pokes = current_user.my_poke.offset(PER_PAGE * params[:page]).limit(PER_PAGE)
+    offset =
+      if params.key?(:page)
+        PER_PAGE * params[:page].to_i
+      else
+        0
+      end
+    my_pokes = current_user.my_pokes.offset(offset).limit(PER_PAGE)
     render json: my_pokes
   end
 
