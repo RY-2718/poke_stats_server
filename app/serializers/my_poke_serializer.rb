@@ -1,3 +1,4 @@
+# MyPokeをJSONで出力するときの整形をしてくれるスゴいやつ
 class MyPokeSerializer < ActiveModel::Serializer
   # TODO: いい感じに作っていく
   attributes :id, :name, :base, :types, :real

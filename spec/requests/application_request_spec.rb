@@ -21,7 +21,7 @@ RSpec.describe 'Application', type: :request do
       it '認証が通る' do
         token = alice.user_tokens.create(token: alice.create_token(exp: Time.zone.now + 1.day, alg: alg))
         headers = {
-          Authorization: "Bearer #{token.token}"
+          Authorization: "Bearer #{token.token}",
         }
         get '/auth_test', headers: headers
         expect(response.status).to eq 200
@@ -32,7 +32,7 @@ RSpec.describe 'Application', type: :request do
       it '認証が通る' do
         token = alice.user_tokens.create(token: alice.create_token(exp: Time.zone.now - 1.day, alg: alg))
         headers = {
-          Authorization: "Bearer #{token.token}"
+          Authorization: "Bearer #{token.token}",
         }
         get '/auth_test', headers: headers
         expect(response.status).to eq 200
@@ -51,7 +51,7 @@ RSpec.describe 'Application', type: :request do
       it '認証が通らない' do
         token = alice.user_tokens.create(token: alice.create_token(exp: Time.zone.now + 1.day, alg: 'none'))
         headers = {
-          Authorization: "Bearer #{token.token}"
+          Authorization: "Bearer #{token.token}",
         }
         get '/auth_test', headers: headers
         expect(response.status).to eq 401
@@ -62,12 +62,11 @@ RSpec.describe 'Application', type: :request do
       it '認証が通らない' do
         token = alice.user_tokens.new(token: alice.create_token(exp: Time.zone.now - 1.day, alg: alg))
         headers = {
-          Authorization: "Bearer #{token.token}"
+          Authorization: "Bearer #{token.token}",
         }
         get '/auth_test', headers: headers
         expect(response.status).to eq 401
       end
     end
   end
-
 end

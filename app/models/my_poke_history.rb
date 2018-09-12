@@ -1,3 +1,4 @@
+# MyPokeHistory 努力値とかの可変な値を扱う
 class MyPokeHistory < ApplicationRecord
   belongs_to :my_poke
   has_many(:my_poke_history_moves, dependent: :destroy)
@@ -51,7 +52,7 @@ class MyPokeHistory < ApplicationRecord
     end
 
     def individual_value_should_be_valid
-      if individual.values.any? { |v| v < 0 || v > 31}
+      if individual.values.any? { |v| v < 0 || v > 31 }
         errors.add(:individual_value, 'が不正です')
       end
     end

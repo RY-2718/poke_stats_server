@@ -1,7 +1,7 @@
 require 'json'
 
+# MyPokeControllerの#createとか#updateとかで使うパラメータをよしなにする
 class MyPokeParameter
-
   def initialize(json: {}, my_poke: nil)
     @json = JSON.parse(json, symbolize_names: true)
     @my_poke = my_poke

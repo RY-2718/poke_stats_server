@@ -6,7 +6,7 @@ require 'yaml'
 url = 'https://gamewith.jp/pokemon-usum/article/show/79582'
 charset = nil
 
-html = open(url) do |f|
+html = open(url) do |f| # rubocop:disable Security/Open
   charset = f.charset
   f.read
 end

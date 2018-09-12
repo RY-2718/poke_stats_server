@@ -1,3 +1,4 @@
+# Application Controller 認証もやるよ！
 class ApplicationController < ActionController::API
   ALG = 'HS256'.freeze
 
@@ -38,7 +39,7 @@ class ApplicationController < ActionController::API
           jwt_bearer_token,
           Rails.application.credentials.secret_key_base,
           verify_iat: true,
-          algorithm: ALG
+          algorithm: ALG,
         )
     rescue JWT::ExpiredSignature
       if (old_token = UserToken.find_by(token: jwt_bearer_token))

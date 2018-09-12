@@ -1,3 +1,4 @@
+# User controller
 class Api::V1::UsersController < ApplicationController
   before_action :jwt_authenticate
   before_action :user_from_params
@@ -10,25 +11,25 @@ class Api::V1::UsersController < ApplicationController
   def update
     if @user.update(user_params)
       render json: {
-        result: 'success'
+        result: 'success',
       }, status: :no_content
     else
       render json: {
         result: 'fail',
-        errors: @user.errors.full_messages
-      },status: :conflict
+        errors: @user.errors.full_messages,
+      }, status: :conflict
     end
   end
 
   def destroy
     if @user.destroy
       render json: {
-        result: 'success'
+        result: 'success',
       }, status: :no_content
     else
       render json: {
         result: 'fail',
-        errors: @user.errors.full_messages
+        errors: @user.errors.full_messages,
       }, status: :conflict
     end
   end
@@ -46,15 +47,15 @@ class Api::V1::UsersController < ApplicationController
 
     def user_params
       {
-        username: params[:username]
+        username: params[:username],
       }
     end
 
     def check_user
-      if @user != current_user # rubocop:disable Style/GuardClause
+      if @user != current_user
         render json: {
           status: 401,
-          errors: ['自分以外のユーザの情報を書き換えることはできません']
+          errors: ['自分以外のユーザの情報を書き換えることはできません'],
         }, status: :unauthorized
       end
     end

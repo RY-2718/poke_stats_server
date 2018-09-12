@@ -1,3 +1,4 @@
+# MyPokeHistoryMove MyPokeHistoryにmove[0-3]みたいなカラム持つよりマシでしょ
 class MyPokeHistoryMove < ApplicationRecord
   belongs_to :my_poke_history
   validate :move_id_should_exists

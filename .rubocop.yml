@@ -3,6 +3,8 @@ AllCops:
   - 'vendor/**/*'
   - 'db/schema.rb'
   - 'db/migrate/*.rb'
+  - 'spec/rails_helper.rb'
+  - 'spec/spec_helper.rb'
 
 Rails:
   Enabled: true
@@ -43,12 +45,18 @@ Style/NumericPredicate:
 
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: comma
+  Exclude:
+    - 'config/**/**'
 
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: comma
+  Exclude:
+  - 'config/**/**'
 
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: comma
+  Exclude:
+  - 'config/**/**'
 
 Style/SymbolArray:
   Enabled: false
@@ -57,7 +65,14 @@ Style/WordArray:
   Enabled: false
 
 Metrics/AbcSize:
-  Max: 20
+  Max: 25
+
+Metrics/BlockLength:
+  Exclude:
+  - 'spec/**/*'
+
+Metrics/CyclomaticComplexity:
+  Max: 10
 
 Metrics/LineLength:
   Max: 130
@@ -69,3 +84,6 @@ Layout/IndentationConsistency:
   Enabled: true
   EnforcedStyle: rails
 
+Naming/AsciiIdentifiers:
+  Exclude:
+    - 'spec/**/*'

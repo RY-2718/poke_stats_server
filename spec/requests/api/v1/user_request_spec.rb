@@ -20,7 +20,7 @@ RSpec.describe 'User Request', type: :request do
   end
 
   context 'patch /api/v1/users/me' do
-    let(:params) { {username: 'ありす'} }
+    let(:params) { { username: 'ありす' } }
     it '204 No Contentが返ってくる' do
       patch '/api/v1/users/me', params: params, headers: headers
       expect(response.status).to eq 204

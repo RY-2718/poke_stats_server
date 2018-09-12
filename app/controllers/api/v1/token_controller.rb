@@ -14,7 +14,6 @@ class Api::V1::TokenController < ApplicationController
 
     user_token = user.user_tokens.new(token: user.create_token(exp: Time.zone.now + 1.day, alg: ALG))
     if user_token.save
-      # TODO: どのような形でユーザに返すかは要検討かも
       response.headers['Authorization'] = "Bearer #{user_token.token}"
       render json: { token: user_token.token }
     else

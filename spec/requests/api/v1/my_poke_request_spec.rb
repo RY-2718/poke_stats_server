@@ -36,8 +36,8 @@ RSpec.describe 'my_poke request', type: :request do
         18.times do
           create(:サザンドラ, :with_latest_history, user: alice)
         end
-        ギルガルド = create(:ギルガルド, :with_latest_history, user: alice)
-        マリルリ = create(:マリルリ, :with_latest_history, user: alice)
+        create(:ギルガルド, :with_latest_history, user: alice)
+        create(:マリルリ, :with_latest_history, user: alice)
       end
 
       it 'page=0では20体取得している' do
@@ -88,25 +88,25 @@ RSpec.describe 'my_poke request', type: :request do
       end
 
       it 'my_pokeのレコードが増える' do
-        expect {
+        expect do
           post '/api/v1/my_pokes', params: params, as: :json, headers: headers
-        }.to change(MyPoke, :count).by(1)
+        end.to change(MyPoke, :count).by(1)
       end
 
       it 'my_poke_historyのレコードが増える' do
-        expect {
+        expect do
           post '/api/v1/my_pokes', params: params, as: :json, headers: headers
-        }.to change(MyPokeHistory, :count).by(1)
+        end.to change(MyPokeHistory, :count).by(1)
       end
 
       it 'my_poke_history_moveのレコードが増える' do
-        expect {
+        expect do
           post '/api/v1/my_pokes', params: params, as: :json, headers: headers
-        }.to change(MyPokeHistoryMove, :count).by(4)
+        end.to change(MyPokeHistoryMove, :count).by(4)
       end
     end
 
-    context ('入力が不十分なとき') do
+    context('入力が不十分なとき') do
       let(:params) do
         {
           poke_name: 'サザンドラ',
@@ -124,21 +124,21 @@ RSpec.describe 'my_poke request', type: :request do
       end
 
       it 'my_pokeのレコードが増えない' do
-        expect {
+        expect do
           post '/api/v1/my_pokes', params: params, as: :json, headers: headers
-        }.not_to change(MyPoke, :count)
+        end.not_to change(MyPoke, :count)
       end
 
       it 'my_poke_historyのレコードが増えない' do
-        expect {
+        expect do
           post '/api/v1/my_pokes', params: params, as: :json, headers: headers
-        }.not_to change(MyPokeHistory, :count)
+        end.not_to change(MyPokeHistory, :count)
       end
 
       it 'my_poke_history_moveのレコードが増える' do
-        expect {
+        expect do
           post '/api/v1/my_pokes', params: params, as: :json, headers: headers
-        }.not_to change(MyPokeHistoryMove, :count)
+        end.not_to change(MyPokeHistoryMove, :count)
       end
     end
 
@@ -161,21 +161,21 @@ RSpec.describe 'my_poke request', type: :request do
       end
 
       it 'my_pokeのレコードが増えない' do
-        expect {
+        expect do
           post '/api/v1/my_pokes', params: params, as: :json, headers: headers
-        }.not_to change(MyPoke, :count)
+        end.not_to change(MyPoke, :count)
       end
 
       it 'my_poke_historyのレコードが増えない' do
-        expect {
+        expect do
           post '/api/v1/my_pokes', params: params, as: :json, headers: headers
-        }.not_to change(MyPokeHistory, :count)
+        end.not_to change(MyPokeHistory, :count)
       end
 
       it 'my_poke_history_moveのレコードが増える' do
-        expect {
+        expect do
           post '/api/v1/my_pokes', params: params, as: :json, headers: headers
-        }.not_to change(MyPokeHistoryMove, :count)
+        end.not_to change(MyPokeHistoryMove, :count)
       end
     end
   end
@@ -222,21 +222,21 @@ RSpec.describe 'my_poke request', type: :request do
     end
 
     it 'my_pokeのレコードが1減る' do
-      expect {
+      expect do
         delete "/api/v1/my_pokes/#{サザンドラ.id}", headers: headers
-      }.to change(MyPoke, :count).by(-1)
+      end.to change(MyPoke, :count).by(-1)
     end
 
     it 'my_poke_historyのレコードが1減る' do
-      expect {
+      expect do
         delete "/api/v1/my_pokes/#{サザンドラ.id}", headers: headers
-      }.to change(MyPokeHistory, :count).by(-1)
+      end.to change(MyPokeHistory, :count).by(-1)
     end
 
     it 'my_poke_history_moveのレコードが4減る' do
-      expect {
+      expect do
         delete "/api/v1/my_pokes/#{サザンドラ.id}", headers: headers
-      }.to change(MyPokeHistoryMove, :count).by(-4)
+      end.to change(MyPokeHistoryMove, :count).by(-4)
     end
   end
 end

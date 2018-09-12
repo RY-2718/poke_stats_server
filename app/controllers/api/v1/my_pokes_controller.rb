@@ -1,3 +1,4 @@
+# MyPoke CRUD controller
 class Api::V1::MyPokesController < ApplicationController
   before_action :jwt_authenticate
   before_action :set_my_poke, only: [:show, :update, :destroy]

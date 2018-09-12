@@ -1,3 +1,4 @@
+# MyPoke 変更のない情報だけ扱う，多分
 class MyPoke < ApplicationRecord
   belongs_to :user
   has_many(:my_poke_histories, dependent: :destroy)
@@ -18,7 +19,7 @@ class MyPoke < ApplicationRecord
     @poke_dex ||= PokeDex.find_by(id: poke_dex_id)
   end
 
-  def real(history = latest_history)
+  def real(history = latest_history) # rubocop:disable Metrics/AbcSize
     effort = history.effort
     individual = history.individual
     nature = Nature.find_by(name: history.nature)
