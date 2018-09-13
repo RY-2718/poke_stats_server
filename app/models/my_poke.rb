@@ -1,7 +1,7 @@
 # MyPoke 変更のない情報だけ扱う，多分
 class MyPoke < ApplicationRecord
   belongs_to :user
-  has_many(:my_poke_histories, dependent: :destroy)
+  has_many :my_poke_histories, dependent: :destroy
   validates :poke_dex_id, presence: true
   delegate :name, :base, :types, to: :poke_dex
 

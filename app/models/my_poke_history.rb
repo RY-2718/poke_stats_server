@@ -1,7 +1,7 @@
 # MyPokeHistory 努力値とかの可変な値を扱う
 class MyPokeHistory < ApplicationRecord
   belongs_to :my_poke
-  has_many(:my_poke_history_moves, dependent: :destroy)
+  has_many :my_poke_history_moves, dependent: :destroy
 
   validates :ability, presence: true
   validates :nature, presence: true
