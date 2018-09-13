@@ -13,6 +13,7 @@ RSpec.describe MyPoke, type: :model do
       expect(poke.full_info).to match(
         id: poke.id,
         name: 'サザンドラ',
+        ability: 'ふゆう',
         item: 'こだわりメガネ',
         nature: 'ひかえめ',
         base: { h: 92, a: 105, b: 90, c: 125, d: 90, s: 98 },

@@ -3,12 +3,17 @@ class MyPokeSerializer < ActiveModel::Serializer
   # TODO: いい感じに作っていく
   attributes :id, :name, :base, :types, :real
 
+  attribute :ability
   attribute :item
   attribute :nature
   attribute :effort
   attribute :individual
   attribute :moves
   attribute :memo
+
+  def ability
+    object.latest_history.ability
+  end
 
   def item
     object.latest_history.item

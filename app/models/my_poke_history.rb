@@ -9,6 +9,7 @@ class MyPokeHistory < ApplicationRecord
 
   def full_info
     {
+      ability: ability,
       item: item,
       nature: nature,
       effort: effort,
