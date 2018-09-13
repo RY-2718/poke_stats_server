@@ -26,8 +26,8 @@ RSpec.describe 'my_poke request', type: :request do
       it 'いい感じのJSONが返ってくる' do
         get '/api/v1/my_pokes', headers: headers
         json = JSON.parse(response.body, symbolize_names: true)
-        acutual_ids = json.map { |v| v[:id] }
-        expect(acutual_ids).to match @expected_ids
+        actual_ids = json.map { |v| v[:id] }
+        expect(actual_ids).to match @expected_ids
       end
     end
 
@@ -79,6 +79,7 @@ RSpec.describe 'my_poke request', type: :request do
           effort: { h: 0, a: 0, b: 0, c: 252, d: 4, s: 252 },
           individual: { h: 31, a: 31, b: 31, c: 31, d: 31, s: 31 },
           moves: %w[りゅうせいぐん あくのはどう かえんほうしゃ ハイパーボイス],
+          memo: 'やっぱりゲーチスのイメージが強いな（ストーリー勢並の感想）',
         }.to_json
       end
 

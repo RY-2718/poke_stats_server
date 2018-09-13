@@ -8,6 +8,7 @@ class MyPokeSerializer < ActiveModel::Serializer
   attribute :effort
   attribute :individual
   attribute :moves
+  attribute :memo
 
   def item
     object.latest_history.item
@@ -27,5 +28,9 @@ class MyPokeSerializer < ActiveModel::Serializer
 
   def moves
     object.latest_history.moves
+  end
+
+  def memo
+    object.latest_history.memo
   end
 end

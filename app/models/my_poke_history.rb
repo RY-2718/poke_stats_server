@@ -14,6 +14,7 @@ class MyPokeHistory < ApplicationRecord
       effort: effort,
       individual: individual,
       moves: moves,
+      memo: memo,
     }
   end
 

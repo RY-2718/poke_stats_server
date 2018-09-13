@@ -31,6 +31,7 @@ class MyPokeParameter
     }
     result.merge!(effort_hash) if @json.key?(:effort)
     result.merge!(individual_hash) if @json.key?(:individual)
+    result[:memo] = @json[:memo] if @json.key?[:memo]
     result.delete_if { |_, v| v.blank? }
   end
 

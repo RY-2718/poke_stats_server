@@ -15,6 +15,7 @@ FactoryBot.define do
     individual_c { 31 }
     individual_d { 31 }
     individual_s { 31 }
+    memo { 'やっぱりゲーチスのイメージが強いな（ストーリー勢並の感想）' }
 
     trait :with_moves do
       after(:create) do |history|
@@ -42,6 +43,7 @@ FactoryBot.define do
     individual_c { 31 }
     individual_d { 31 }
     individual_s { 0 }
+    memo { 'ギルガルド！！！！！！！！！！！！アニポケで見た（多分全員いる）' }
 
     trait :with_moves do
       after(:create) do |history|
@@ -69,6 +71,7 @@ FactoryBot.define do
     individual_c { 31 }
     individual_d { 31 }
     individual_s { 31 }
+    memo { 'マリルリかわいい！！けどつよいからこわい' }
 
     trait :with_moves do
       after(:create) do |history|
@@ -96,6 +99,7 @@ FactoryBot.define do
     individual_c { 31 }
     individual_d { 31 }
     individual_s { 31 }
+    memo { 'HBベースアローとか6世代の化石かよ' }
 
     trait :with_moves do
       after(:create) do |history|
@@ -123,6 +127,7 @@ FactoryBot.define do
     individual_c { 31 }
     individual_d { 31 }
     individual_s { 31 }
+    memo { 'メガバナはずっといるな' }
 
     trait :with_moves do
       after(:create) do |history|
@@ -150,6 +155,7 @@ FactoryBot.define do
     individual_c { 31 }
     individual_d { 31 }
     individual_s { 31 }
+    memo { 'スカガブはシンプルに強いな' }
 
     trait :with_moves do
       after(:create) do |history|

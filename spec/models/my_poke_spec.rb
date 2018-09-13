@@ -21,6 +21,7 @@ RSpec.describe MyPoke, type: :model do
         real: { h: 167, a: 112, b: 110, c: 194, d: 111, s: 150 },
         moves: %w[あくのはどう りゅうせいぐん かえんほうしゃ ハイパーボイス],
         types: %w[あく ドラゴン],
+        memo: 'やっぱりゲーチスのイメージが強いな（ストーリー勢並の感想）',
       )
     end
   end
