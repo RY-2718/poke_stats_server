@@ -3,9 +3,19 @@ require 'rails_helper'
 RSpec.describe MyPoke, type: :model do
   let(:alice) { create(:alice) }
   let(:poke) { create(:サザンドラ, :with_latest_history, user: alice) }
+  let(:poke1) { create(:ギルガルド, :with_latest_history, user: alice) }
+  let(:poke2) { create(:マリルリ, :with_latest_history, user: alice) }
+  let(:poke3) { create(:ファイアロー, :with_latest_history, user: alice) }
+  let(:poke4) { create(:メガフシギバナ, :with_latest_history, user: alice) }
+  let(:poke5) { create(:ガブリアス, :with_latest_history, user: alice) }
 
   it 'should be valid' do
     expect(poke).to be_valid
+    expect(poke1).to be_valid
+    expect(poke2).to be_valid
+    expect(poke3).to be_valid
+    expect(poke4).to be_valid
+    expect(poke5).to be_valid
   end
 
   describe '#full_info' do

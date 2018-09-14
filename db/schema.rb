@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_13_135221) do
+ActiveRecord::Schema.define(version: 2018_09_13_141122) do
 
   create_table "my_poke_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "item"
@@ -51,6 +51,26 @@ ActiveRecord::Schema.define(version: 2018_09_13_135221) do
     t.index ["user_id"], name: "index_my_pokes_on_user_id"
   end
 
+  create_table "opp_poke_moves", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "move_id"
+    t.bigint "opp_poke_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["opp_poke_id"], name: "index_opp_poke_moves_on_opp_poke_id"
+  end
+
+  create_table "opp_pokes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "ability"
+    t.string "item"
+    t.text "memo"
+    t.string "nature"
+    t.integer "poke_dex_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_opp_pokes_on_user_id"
+  end
+
   create_table "user_tokens", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.string "token"
@@ -69,4 +89,6 @@ ActiveRecord::Schema.define(version: 2018_09_13_135221) do
   add_foreign_key "my_poke_histories", "my_pokes"
   add_foreign_key "my_poke_history_moves", "my_poke_histories"
   add_foreign_key "my_pokes", "users"
+  add_foreign_key "opp_poke_moves", "opp_pokes"
+  add_foreign_key "opp_pokes", "users"
 end
