@@ -8,8 +8,18 @@ class Battle < ApplicationRecord
 
   validates :win, presence: true
 
-  def my_pokes
-    my_poke_histories.map do |history|
+  def my_pokes_in_battle
+    history_ids = battle_my_poke_histories.order(:order).reject { |v| v.order == 0 }.map(&:my_poke_history_id)
+    history_ids.map do |id|
+      history = my_poke_histories.find_by(id: id)
+      history.my_poke.tap { |my_poke| my_poke.history = history }
+    end
+  end
+
+  def my_pokes_not_in_battle
+    history_ids = battle_my_poke_histories.select { |v| v.order == 0 }.map(&:my_poke_history_id)
+    history_ids.map do |id|
+      history = my_poke_histories.find_by(id: id)
       history.my_poke.tap { |my_poke| my_poke.history = history }
     end
   end
