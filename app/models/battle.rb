@@ -1,3 +1,4 @@
+# 対戦を記録するクラス
 class Battle < ApplicationRecord
   belongs_to :user
   has_many :battle_my_poke_histories, dependent: :destroy
@@ -6,4 +7,10 @@ class Battle < ApplicationRecord
   has_many :opp_pokes, through: :battle_opp_pokes
 
   validates :win, presence: true
+
+  def my_pokes
+    my_poke_histories.map do |history|
+      history.my_poke.tap { |my_poke| my_poke.history = history }
+    end
+  end
 end

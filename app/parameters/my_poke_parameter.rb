@@ -39,7 +39,8 @@ class MyPokeParameter
     if @my_poke.nil? || @json.key?(:moves)
       @json[:moves].map { |v| { move_id: Move.find_by(name: v).id } }
     else
-      @my_poke.latest_history.moves.map { |v| { move_id: Move.find_by(name: v).id } }
+      # history = latest_historyを前提に置いているんだけど，これは大丈夫なのか
+      @my_poke.history.moves.map { |v| { move_id: Move.find_by(name: v).id } }
     end
   end
 

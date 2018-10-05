@@ -7,6 +7,13 @@ FactoryBot.define do
         poke.my_poke_histories << FactoryBot.create(:サザンドラ_最新, :with_moves, my_poke: poke)
       end
     end
+
+    trait :with_histories do
+      after(:create) do |poke|
+        poke.my_poke_histories << FactoryBot.create(:サザンドラ_履歴1, :with_moves, my_poke: poke, created_at: Time.zone.now - 1.minute)
+        poke.my_poke_histories << FactoryBot.create(:サザンドラ_最新, :with_moves, my_poke: poke)
+      end
+    end
   end
 
   factory :ギルガルド, class: MyPoke do
