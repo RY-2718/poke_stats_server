@@ -23,4 +23,16 @@ class Battle < ApplicationRecord
       history.my_poke.tap { |my_poke| my_poke.history = history }
     end
   end
+
+  def opp_pokes_in_battle
+    battle_opp_pokes.order(:order).reject { |v| v.order == 0 }.map do |v|
+      opp_pokes.find_by(id: v.opp_poke_id)
+    end
+  end
+
+  def opp_pokes_not_in_battle
+    battle_opp_pokes.select { |v| v.order == 0 }.map do |v|
+      opp_pokes.find_by(id: v.opp_poke_id)
+    end
+  end
 end

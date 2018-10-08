@@ -18,6 +18,16 @@ RSpec.describe Battle, type: :model do
     expect(names).to eq %w[ファイアロー メガフシギバナ ガブリアス]
   end
 
+  it 'should return opp_poke_in_battle with order' do
+    names = battle.opp_pokes_in_battle.map(&:name)
+    expect(names).to eq %w[メガガルーラ ランドロス(けしんフォルム) カプ・レヒレ]
+  end
+
+  it 'should return opp_poke_not_in_battle' do
+    names = battle.opp_pokes_not_in_battle.map(&:name)
+    expect(names).to eq %w[ギルガルド ウルガモス ミミッキュ]
+  end
+
   it 'should return my_poke with suit history' do
     my_poke_with_history = battle.my_pokes_in_battle.find { |p| p.name == 'サザンドラ' }
     expect(my_poke_with_history.history.item).to eq 'こだわりスカーフ'
