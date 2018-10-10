@@ -11,6 +11,7 @@ class MyPokeSerializer < ActiveModel::Serializer
   attribute :moves
   attribute :memo
 
+  # TODO: delegates使えばいい感じにリファクタできそうな気がする
   def ability
     object.history.ability
   end
