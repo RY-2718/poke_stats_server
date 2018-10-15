@@ -6,7 +6,7 @@ class Battle < ApplicationRecord
   has_many :battle_opp_pokes, dependent: :destroy
   has_many :opp_pokes, through: :battle_opp_pokes
 
-  validates :win, presence: true
+  validates :win, inclusion: { in: [true, false] }
 
   def my_pokes_in_battle
     battle_my_poke_histories.order(:order).reject { |v| v.order == 0 }.map do |v|
