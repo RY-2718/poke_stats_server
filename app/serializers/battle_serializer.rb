@@ -1,6 +1,6 @@
 # battleをいい感じのJSONにしてくれるやつ
 class BattleSerializer < ActiveModel::Serializer
-  attributes :id, :win, :my_rate, :opp_rate, :opp_name
+  attributes :id, :win, :my_rate, :opp_rate, :opp_name, :memo
   has_many :my_pokes_in_battle, serializer: MyPokeSerializer
   has_many :my_pokes_not_in_battle, serializer: MyPokeSerializer
   has_many :opp_pokes_in_battle, serializer: OppPokeSerializer

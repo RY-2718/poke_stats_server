@@ -22,6 +22,7 @@ RSpec.describe 'battle request', type: :request do
       json = JSON.parse(response.body, symbolize_names: true)
       expect(json[:id]).to eq battle.id
       expect(json[:win]).to eq battle.win
+      expect(json[:memo]).to eq battle.memo
       expect(json[:my_rate]).to eq battle.my_rate
       expect(json[:opp_rate]).to eq battle.opp_rate
       expect(json[:opp_name]).to eq battle.opp_name
@@ -38,6 +39,7 @@ RSpec.describe 'battle request', type: :request do
     let(:params) {
       {
         win: true,
+        memo: 'メモ',
         my_rate: 1500,
         opp_rate: 1500,
         opp_name: 'グリーン',

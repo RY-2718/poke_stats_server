@@ -4,6 +4,7 @@ FactoryBot.define do
     opp_rate { 1500 }
     opp_name { 'レッド' }
     win { true }
+    memo { 'メモ' }
 
     trait :with_pokes do
       after(:create) do |battle|

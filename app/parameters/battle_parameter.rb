@@ -11,6 +11,7 @@ class BattleParameter
   def battle
     {
       win: @json[:win].to_s,
+      memo: @json[:memo],
       my_rate: @json[:my_rate],
       opp_rate: @json[:opp_rate],
       opp_name: @json[:opp_name],

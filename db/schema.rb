@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_14_055520) do
+ActiveRecord::Schema.define(version: 2018_10_19_080102) do
 
   create_table "battle_my_poke_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "battle_id"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2018_09_14_055520) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "memo"
     t.index ["user_id"], name: "index_battles_on_user_id"
   end
 
