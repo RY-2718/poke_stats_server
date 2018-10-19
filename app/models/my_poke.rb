@@ -5,13 +5,19 @@ class MyPoke < ApplicationRecord
   validates :poke_dex_id, presence: true
   delegate :name, :base, :types, to: :poke_dex
 
-  def full_info(history = latest_history)
+  attr_writer :history
+
+  def history
+    @history ||= latest_history
+  end
+
+  def full_info
     {
       id: id,
       name: name,
       base: base,
       types: types,
-      real: real(history),
+      real: real,
     }.merge(history.full_info)
   end
 
@@ -19,7 +25,7 @@ class MyPoke < ApplicationRecord
     @poke_dex ||= PokeDex.find_by(id: poke_dex_id)
   end
 
-  def real(history = latest_history) # rubocop:disable Metrics/AbcSize
+  def real # rubocop:disable Metrics/AbcSize
     effort = history.effort
     individual = history.individual
     nature = Nature.find_by(name: history.nature)
@@ -46,7 +52,9 @@ class MyPoke < ApplicationRecord
     updated_at > latest_history.created_at
   end
 
-  def latest_history
-    @latest_history ||= MyPokeHistory.order(created_at: :desc).find_by(my_poke_id: id)
-  end
+  private
+
+    def latest_history
+      @latest_history ||= my_poke_histories.order(created_at: :desc).first
+    end
 end

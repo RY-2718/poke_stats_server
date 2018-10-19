@@ -11,31 +11,32 @@ class MyPokeSerializer < ActiveModel::Serializer
   attribute :moves
   attribute :memo
 
+  # TODO: delegates使えばいい感じにリファクタできそうな気がする
   def ability
-    object.latest_history.ability
+    object.history.ability
   end
 
   def item
-    object.latest_history.item
+    object.history.item
   end
 
   def nature
-    object.latest_history.nature
+    object.history.nature
   end
 
   def effort
-    object.latest_history.effort
+    object.history.effort
   end
 
   def individual
-    object.latest_history.individual
+    object.history.individual
   end
 
   def moves
-    object.latest_history.moves
+    object.history.moves
   end
 
   def memo
-    object.latest_history.memo
+    object.history.memo
   end
 end

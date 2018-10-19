@@ -2,6 +2,8 @@
 class OppPoke < ApplicationRecord
   belongs_to :user
   has_many :opp_poke_moves, dependent: :destroy
+  has_many :battle_opp_pokes, dependent: :destroy
+  has_many :battles, through: :battle_opp_pokes
 
   validates :poke_dex_id, presence: true
 

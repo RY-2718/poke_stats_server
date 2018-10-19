@@ -12,6 +12,9 @@ Rails:
 Style/AsciiComments:
   Enabled: false
 
+Style/BlockDelimiters:
+  Enabled: false
+
 Style/ClassAndModuleChildren:
   Enabled: false
 

@@ -2,6 +2,8 @@
 class MyPokeHistory < ApplicationRecord
   belongs_to :my_poke
   has_many :my_poke_history_moves, dependent: :destroy
+  has_many :battle_my_poke_histories, dependent: :destroy
+  has_many :battles, through: :battle_my_poke_histories
 
   validates :ability, presence: true
   validates :nature, presence: true

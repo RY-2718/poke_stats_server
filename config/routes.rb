@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get 'hello', to: 'token#hello'
       resources 'users', only: [:show, :update, :destroy]
       resources 'my_pokes'
+      resources 'battles'
     end
   end
 end

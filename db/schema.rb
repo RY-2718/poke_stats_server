@@ -10,7 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_13_141122) do
+ActiveRecord::Schema.define(version: 2018_10_19_080102) do
+
+  create_table "battle_my_poke_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "battle_id"
+    t.bigint "my_poke_history_id"
+    t.integer "order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["battle_id"], name: "index_battle_my_poke_histories_on_battle_id"
+    t.index ["my_poke_history_id"], name: "index_battle_my_poke_histories_on_my_poke_history_id"
+  end
+
+  create_table "battle_opp_pokes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "battle_id"
+    t.bigint "opp_poke_id"
+    t.integer "order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["battle_id"], name: "index_battle_opp_pokes_on_battle_id"
+    t.index ["opp_poke_id"], name: "index_battle_opp_pokes_on_opp_poke_id"
+  end
+
+  create_table "battles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "my_rate"
+    t.integer "opp_rate"
+    t.string "opp_name"
+    t.boolean "win"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "memo"
+    t.index ["user_id"], name: "index_battles_on_user_id"
+  end
 
   create_table "my_poke_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "item"
@@ -86,6 +118,11 @@ ActiveRecord::Schema.define(version: 2018_09_13_141122) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "battle_my_poke_histories", "battles"
+  add_foreign_key "battle_my_poke_histories", "my_poke_histories"
+  add_foreign_key "battle_opp_pokes", "battles"
+  add_foreign_key "battle_opp_pokes", "opp_pokes"
+  add_foreign_key "battles", "users"
   add_foreign_key "my_poke_histories", "my_pokes"
   add_foreign_key "my_poke_history_moves", "my_poke_histories"
   add_foreign_key "my_pokes", "users"

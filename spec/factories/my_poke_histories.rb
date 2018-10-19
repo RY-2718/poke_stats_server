@@ -27,6 +27,34 @@ FactoryBot.define do
     end
   end
 
+  factory :サザンドラ_履歴1, class: MyPokeHistory do
+    item { 'こだわりスカーフ' }
+    ability { 'ふゆう' }
+    nature { 'ひかえめ' }
+    effort_h { 0 }
+    effort_a { 0 }
+    effort_b { 0 }
+    effort_c { 252 }
+    effort_d { 4 }
+    effort_s { 252 }
+    individual_h { 31 }
+    individual_a { 31 }
+    individual_b { 31 }
+    individual_c { 31 }
+    individual_d { 31 }
+    individual_s { 31 }
+    memo { '履歴1' }
+
+    trait :with_moves do
+      after(:create) do |history|
+        history.my_poke_history_moves << FactoryBot.create(:サザンドラ_最新_0, my_poke_history: history)
+        history.my_poke_history_moves << FactoryBot.create(:サザンドラ_最新_1, my_poke_history: history)
+        history.my_poke_history_moves << FactoryBot.create(:サザンドラ_最新_2, my_poke_history: history)
+        history.my_poke_history_moves << FactoryBot.create(:サザンドラ_最新_3, my_poke_history: history)
+      end
+    end
+  end
+
   factory :ギルガルド_最新, class: MyPokeHistory do
     item { 'じゃくてんほけん' }
     ability { 'バトルスイッチ' }
