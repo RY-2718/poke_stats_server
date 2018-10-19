@@ -1,3 +1,4 @@
+# 敵ポケモンの技
 class OppPokeMove < ApplicationRecord
   belongs_to :opp_poke
   validate :move_id_should_exists
