@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources 'users', only: [:show, :update, :destroy]
       resources 'my_pokes'
       resources 'battles'
+      resources 'opp_pokes', only: [:create, :update, :destroy]
     end
   end
 end
